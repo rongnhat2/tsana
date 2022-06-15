@@ -13,6 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', 'Customer\DisplayController@index')->name('customer.view.index'); 
+Route::middleware(['AuthCustomer:login'])->group(function () {
+    Route::get('/login', 'Customer\DisplayController@login')->name('customer.view.login'); 
 });
+Route::middleware(['AuthCustomer:logined'])->group(function () { 
+    Route::post('logout', 'Customer\AuthController@logout')->name('customer.logout');
+    Route::get('home', 'Customer\DisplayController@home')->name('customer.view.home');
+}); 
+// xác nhận người dùng
+Route::get('confirm', 'Customer\AuthController@confirm')->name('customer.confirm');
+
+Route::prefix('customer')->group(function () {
+    Route::prefix('api')->group(function () {
+        Route::prefix('auth')->group(function () { 
+            Route::post('register', 'Customer\AuthController@register')->name('customer.auth.register');
+        }); 
+    });
+});
+

@@ -1,0 +1,163 @@
+aside{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 240px;
+	height: 100vh;
+	background-color: #2e2e30;
+	z-index: 2;
+}
+aside .top-wrapper{
+	width: 100%;
+	height: 75px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+aside .top-wrapper .top-logo{
+	padding: 0 24px;
+	color: #fff;
+	font-size: 28px;
+}
+aside .nav-wrapper{
+	width: 100%;
+	padding: 0 0 16px 0;
+	margin: 0 0 8px 0;
+	border-bottom: 1px solid #424244;
+}
+aside .nav-wrapper .nav-item{
+	width: 100%;
+	padding: 0 24px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	font-size: 14px;
+	line-height: 32px;
+	cursor: pointer;
+}
+aside .nav-wrapper .nav-item i{
+	width: 20px;
+	margin: 0 5px 0 0;
+}
+aside .nav-wrapper .nav-item.is-active{
+	background-color: rgba(255,255,255,.2);
+}
+aside .nav-wrapper .nav-item:hover{
+	background-color: rgba(255,255,255,.1);
+}
+aside .product-wrapper{
+	width: 100%;
+	padding: 0 0 16px 0;
+	margin: 0 0 8px 0;
+	border-bottom: 1px solid #424244;
+}
+aside .product-wrapper .product-main-wrapper{
+	position: relative;
+}
+aside .product-wrapper .product-main-wrapper .product-title{
+	background-color: rgba(255,255,255,.1);
+	width: 100%;
+	padding: 0 24px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	font-size: 14px;
+	line-height: 32px;
+	cursor: pointer;
+	z-index: 1;
+}
+aside .product-wrapper .product-main-wrapper .product-create{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	width: 28px;
+	height: 28px; 
+	color: #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	cursor: pointer;
+	z-index: 2;
+}
+aside .product-wrapper .product-main-wrapper .product-create:hover{
+	color: #fff;
+}
+aside .product-wrapper .collab-main-wrapper{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 16px;
+	margin: 16px 0;
+}
+aside .product-wrapper .collab-list{
+	display: flex;
+	align-items: center;
+}
+aside .product-wrapper .collab-list .collab-item{
+	width: 28px;
+	height: 28px;
+	background-color: #ccc;
+	border-radius: 28px;
+	margin: 0 6px 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+}
+aside .product-wrapper .collab-create{  
+	font-size: 12px;
+	color: #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	cursor: pointer;
+	z-index: 2;
+}
+aside .product-wrapper .project-main-wrapper{
+	padding: 0 16px;
+}
+aside .product-wrapper .project-main-wrapper .project-list{
+
+}
+aside .product-wrapper .project-main-wrapper .project-list .project-item{
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}	
+aside .product-wrapper .project-main-wrapper .project-list .project-item .project-icon{
+	width: 10px;
+	height: 10px;
+	margin: 0 5px 0 0;
+}	
+aside .product-wrapper .project-main-wrapper .project-list .project-item .project-name{ 
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    width: 150px;
+    color: #fff;
+}	
+aside .product-wrapper .project-main-wrapper .project-list .project-item .project-action{
+	width: 30px;
+	height: 30px; 
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+    color: #fff;
+}	
+aside .product-wrapper .project-main-wrapper .project-list .project-item.project-public .project-icon{
+	background-color: #9ee7e3;
+}	
+aside .product-wrapper .project-main-wrapper .project-list .project-item.project-private .project-icon{
+	background-color: #f1bd6c;
+}
+
+section.content-wrapper{
+	position: relative;
+	width: 100%;
+	padding: 0 0 0 240px;
+	height: 100vh;
+	background-color: #1e1f21;
+}

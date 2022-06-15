@@ -1,0 +1,26 @@
+.I-login{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.I-login .login-wrapper{
+	width: 90%;
+	max-width: 600px; 
+	border-radius: 8px;
+	background-color: #2a2b2d;
+	border: 1px solid #424244;
+	padding: 25px;
+	display: none;
+}
+.I-login .login-wrapper.is-open{
+	display: block;
+}
+.I-login .login-wrapper h2.login-title{
+	font-size: 32px;
+	font-weight: 40px;
+	color: #fff;
+	text-align: center;
+}
+

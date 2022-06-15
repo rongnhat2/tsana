@@ -1,0 +1,60 @@
+.I-main{
+
+}
+.I-main .main-wrapper{
+	width: 100%;
+	max-width: 1200px;
+	margin: 30px auto; 
+	overflow: hidden;
+}
+.I-main .main-wrapper .main-body{
+
+}
+.I-main .main-wrapper .tab-block{
+	float: left;
+	padding: 5px;
+}
+.I-main .main-wrapper .tab-block.w-50{
+	width: 50%;
+}
+.I-main .main-wrapper .tab-block.w-100{
+	width: 100%;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #2a2b2d; 
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-header{
+	position: relative; 
+	border-bottom: 1px solid #ccc;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-header .tab-name{
+	color: #fff;
+	font-size: 18px;
+	line-height: 32px;
+	padding: 8px 15px;  
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-header .tab-control-wrapper{
+	padding: 0 15px; 
+	display: flex;
+	align-items: center; 
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-header .tab-control-wrapper .tab-control-item{
+	padding: 8px; 
+	font-size: 14px;
+	line-height: 20px;
+	color: #ccc;
+	cursor: pointer;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-header .tab-control-wrapper .tab-control-item.is-active{ 
+	border-bottom: 1px solid #fff;
+	color: #fff;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-body{
+	padding: 15px;
+}
+
+
+
+

@@ -1,0 +1,51 @@
+header{
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 75px;
+	background-color: #1e1f21;
+	border-bottom: 1px solid #424244;
+	z-index: 3;
+	display: flex !important;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 40px;
+}
+header .page-title{ 
+	color: #fff;
+	font-size: 24px;
+}
+header .customer-action{ 
+	display: flex;
+	align-items: center;
+}
+header .customer-action .customer-create{
+	width: 30px;
+	height: 30px;
+	display: flex; 
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(240, 106, 106);
+	color: #fff;
+	border-radius: 30px;
+	cursor: pointer;
+	margin: 0 20px 0 0;
+}
+header .customer-action .customer-auth{
+	width: 30px;
+	height: 30px;
+	display: flex; 
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(240, 106, 106);
+	color: #fff;
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+
+
+
+
+
