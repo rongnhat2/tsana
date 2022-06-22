@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Cookie;
 use App\Repositories\CustomerRepository;
 use App\Models\Customer;
 use App\Models\CustomerDetail;
+
+use App\Repositories\TeamRepository; 
+use App\Models\Team;
+
 use Redirect,Response,Config;
 use Mail;
 use App\Mail\MailNotify;
@@ -21,11 +25,25 @@ class AuthController extends Controller
 {
     protected $customer;
     protected $customer_detail;
+    protected $team;
 
-    public function __construct(Customer $customer, CustomerDetail $customer_detail){
+    public function __construct(Customer $customer, CustomerDetail $customer_detail, Team $team){
         $this->customer             = new CustomerRepository($customer);
         $this->customer_detail      = new CustomerRepository($customer_detail);
+        $this->team                 = new TeamRepository($team);
     }
+
+    public function login(Request $request){ 
+        $customer_id = $this->customer->checkEmailPassword($request); 
+        if ($customer_id) {
+            Cookie::queue(Cookie::forget('_token_'));
+            Cookie::queue('_token_', $this->customer->createTokenClient($customer_id), 2628000);
+            return $this->customer->send_response("Login successful!! Redirect in 2s", null, 200); 
+        }else{
+            return $this->customer->send_response("Username or password incorrect", null, 500); 
+        }
+    }
+    
     public function register(Request $request){
         $data_email     = $request->data_email;
         $data_name      = $request->data_name;
@@ -34,18 +52,30 @@ class AuthController extends Controller
         if ($this->customer->check_email($data_email)) {
             return $this->customer->send_response("Email has available", null, 200);
         }else{
-            $secret_key = mt_rand(1, 9999999);
-            $data_auth = [
-                "secret_key"    => $secret_key,
-                "email"         => $data_email,
-                "password"      => Hash::make($data_password),
-            ];
-            $auth_register = $this->customer->create($data_auth);
-            $data_detail = [
-                "customer_id"   => $auth_register->id,
-                "name"          => $data_name, 
-            ];
-            $this->customer_detail->create($data_detail);
+            try {
+                DB::beginTransaction();
+                $secret_key = mt_rand(1, 9999999);
+                $data_auth = [
+                    "secret_key"    => $secret_key,
+                    "email"         => $data_email,
+                    "password"      => Hash::make($data_password),
+                ];
+                $auth_register = $this->customer->create($data_auth);
+                $data_detail = [
+                    "customer_id"   => $auth_register->id,
+                    "name"          => $data_name, 
+                ];
+                $this->customer_detail->create($data_detail);
+
+                $data_team = [
+                    "customer_id"   => $auth_register->id,
+                    "name"          => explode("@", $request->data_email)[0], 
+                ];
+                $this->team->create($data_team);
+                DB::commit(); 
+            } catch (\Exception $exception) {
+                DB::rollBack(); 
+            }
 
             // Send mail confirm
             $verify_code = mt_rand(1, 9999999);
@@ -67,17 +97,6 @@ class AuthController extends Controller
         } 
     }
 
-    public function login(Request $request){
-        $customer_id = $this->customer->check_email($request);    
-        if ($customer_id) {
-            Cookie::queue(Cookie::forget('_token_'));
-            Cookie::queue('_token_', $this->customer->createTokenClient($customer_id), 2628000);
-            return $this->customer->send_response("", Session::get('url_save'), 200); 
-        }else{
-            return $this->customer->send_response("Tên tài khoản hoặc mật khẩu không chính xác", null, 500); 
-        }
-    }
-
     public function confirm(Request $request){
         $code   = $request->code;
         $email  = $request->email;
@@ -95,6 +114,11 @@ class AuthController extends Controller
         }else{
             return redirect()->route('customer.view.login')->with('error', 'Có lỗi sảy ra, vui lòng liên hệ quản trị viên để được hỗ trợ!!');  
         }
+    }
+
+    public function logout(Request $request){
+        Cookie::queue(Cookie::forget('_token_'));
+        return $this->customer->send_response("Logout successful", null, 200); 
     }
     
 }

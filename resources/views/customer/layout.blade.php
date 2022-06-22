@@ -15,32 +15,24 @@
 			<div class="nav-item">
 				<i class="fas fa-tasks"></i> My Task
 			</div>
+			<div class="nav-item">
+				<i class="fas fa-users"></i> Team
+			</div> 
 		</div>
 		<div class="product-wrapper">
 			<div class="product-main-wrapper">
 				<div class="product-title">
 					Project
 				</div> 
-				<div class="product-create">
+				<div class="product-create" modal-full-control="Project">
 					<i class="fas fa-plus"></i>
 				</div>
 			</div>
 			<div class="collab-main-wrapper">
 				<div class="collab-list">
-					<div class="collab-item">
-						
-					</div>
-					<div class="collab-item">
-						
-					</div>
-					<div class="collab-item">
-						
-					</div>
-					<div class="collab-item">
-						
-					</div>
+					
 				</div>
-				<div class="collab-create">
+				<div class="collab-create" modal-control="Collab">
 					<i class="fas fa-plus m-r-5"></i>Invite 
 				</div>
 			</div>
@@ -49,54 +41,20 @@
 					<div class="project-item project-public">
 						<div class="project-icon"></div>
 						<div class="project-name">
-							asdas
+							Test
 						</div> 
 						<div class="project-action"> 
 						</div>
-					</div>
-					<div class="project-item project-public">
-						<div class="project-icon"></div>
-						<div class="project-name">
-							asdas
-						</div> 
-						<div class="project-action"> 
-						</div>
-					</div>
-					<div class="project-item project-public">
-						<div class="project-icon"></div>
-						<div class="project-name">
-							asdas
-						</div> 
-						<div class="project-action"> 
-						</div>
-					</div>
+					</div> 
 					<div class="project-item project-private">
 						<div class="project-icon"></div>
 						<div class="project-name">
-							asdas
+							Test Private
 						</div>
 						<div class="project-action">
 							<i class="fas fa-lock"></i>
 						</div>
-					</div>
-					<div class="project-item project-private">
-						<div class="project-icon"></div>
-						<div class="project-name">
-							asdas
-						</div>
-						<div class="project-action">
-							<i class="fas fa-lock"></i>
-						</div>
-					</div>
-					<div class="project-item project-private">
-						<div class="project-icon"></div>
-						<div class="project-name">
-							asdas
-						</div>
-						<div class="project-action">
-							<i class="fas fa-lock"></i>
-						</div>
-					</div>
+					</div> 
 				</div>
 			</div>
 		</div>		

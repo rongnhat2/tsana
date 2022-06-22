@@ -44,6 +44,16 @@ class CustomerRepository extends BaseRepository implements RepositoryInterface
         }
     }
 
+    // lấy ra thông tin để assign
+    public function get_assign($id){
+        return DB::table('customer') 
+                    ->select('customer.id as customer_id', 'customer.email', 'customer_detail.name', 'customer_detail.avatar') 
+                    ->leftjoin("customer_detail", "customer_detail.customer_id", "=", "customer.id") 
+                    ->where("customer.id", "=", $id)
+                    ->first();
+    }
+
+
     // Tạo token client
     public function createTokenClient($id){
         return $id . '$' . Hash::make($id . '$' . $this->model->findOrFail($id)->secret_key);
@@ -60,14 +70,6 @@ class CustomerRepository extends BaseRepository implements RepositoryInterface
     // Lấy ra Name, Phone, Address 
     public function get_profile($id){
          $sql = "SELECT id, name, address, phone
-                    FROM customer_detail 
-                    WHERE customer_id = ".$id;
-        return DB::select($sql);
-    }
-
-    // Lây ra giỏ hàng
-    public function get_cart($id){
-         $sql = "SELECT id, cart
                     FROM customer_detail 
                     WHERE customer_id = ".$id;
         return DB::select($sql);

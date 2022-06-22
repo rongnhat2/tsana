@@ -1,6 +1,6 @@
 .I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list{
 	width: 100%;
-	height: 620px;
+	max-height: 420px;
 } 
 .I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block{
 	float: left;
@@ -9,9 +9,46 @@
 }
 .I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block .collab-item{
 	width: 100%;
-	height: 300px;
+	height: 200px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block .collab-item .collab-avatar{
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	background-color: #ccc;
+	margin: 20px auto;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block .collab-item .collab-email{
+	text-align: center;
+	margin: 3px;
+	color: #ccc;
+	font-size: 14px;
+	padding: 0 10px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block .collab-item .collab-name{
+	text-align: center;
+	margin: 3px;
+	color: #fff;
+	font-size: 16px;
+	padding: 0 10px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block .collab-item .collab-status{
+	margin: 15px auto;
+	background-color: #f1bd6c;
+	padding: 4px 8px;
+	color: #fff;
+	font-size: 14px;
+	width: 100px;
+	border-radius: 4px;
+	text-align: center;
 }
 .I-main .main-wrapper .tab-block .tab-wrapper .tab-body .collab-list .collab-item-block .collab-item.create-block{ 
 	border: 1px dashed #fff; 

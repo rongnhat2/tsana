@@ -1,0 +1,42 @@
+.project-list-group{ 
+	height: 315px;
+}
+.project-list-group .project-item{
+	float: left;
+	width: 50%;
+	margin: 10px 0;
+	padding: 0 10px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+.project-list-group .project-item .project-icon{
+	width: 50px;
+	height: 50px;
+	border-radius: 4px;
+	margin: 0 15px 0 0;
+	background-color: #ccc;
+}
+.project-list-group .project-item .project-description{
+	width: calc(100% - 65px);
+}
+.project-list-group .project-item .project-description .project-name{
+	font-size: 14px;
+	line-height: 22px;
+	color: #fff;
+}
+.project-list-group .project-item .project-description .project-task{
+	color: #ccc;
+	font-size: 12px;
+}
+.project-list-group .project-item.project-create .project-icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ccc;
+	border: 1px dashed #ccc;
+	background-color: transparent;
+}
+
+
+

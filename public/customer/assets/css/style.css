@@ -15,9 +15,11 @@
 @import "component/I-login.css";   
 @import "component/I-main.css";   
 @import "component/I-modal.css";   
+@import "component/I-full-modal.css";   
 
 @import "component/S-task.css";   
 @import "component/S-collaborator.css";   
+@import "component/S-project.css";   
 
 
 /* Responsive */

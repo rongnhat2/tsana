@@ -1,0 +1,1 @@
+<p>{{ $customer_data->name }} has invited you to the group {{ $customer_data->team_name }}, Click <a href="{{ $url }}">Here</a> to confirm.</p>

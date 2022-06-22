@@ -11,17 +11,28 @@
 		<div class="I-login">
 			<div class="login-wrapper is-open" id="login-form">
 				<h2 class="login-title">Login to Tsana</h2>
-				<div class="notification-wrapper"> </div>	
+				<div class="notification-wrapper"> 
+					@if ( Session::has('error') )
+						<div class="notification-group">
+							<div class="notification-item error">{{ Session::get('error') }}</div> 
+						</div>	 
+	                @endif
+					@if ( Session::has('success') )
+						<div class="notification-group">
+							<div class="notification-item success">{{ Session::get('success') }}</div> 
+						</div>	 
+	                @endif
+				</div>	
 				<div class="form-wrapper">
 					<label for="">Email</label>
-					<input type="text" placeholder="Email">
+					<input class="data-email" type="text" placeholder="Email">
 				</div>
 				<div class="form-wrapper">
 					<label for="">Password</label>
-					<input type="text" placeholder="Password">
+					<input class="data-password" type="password" placeholder="Password">
 				</div>
 				<div class="form-wrapper button-action">
-					<a href="#" class="button submit">Login</a>
+					<a href="#" class="button submit action-login" atr="Push">Login</a>
 					or
 					<a href="#" class="button cancel open-register-form">Register</a>
 				</div>

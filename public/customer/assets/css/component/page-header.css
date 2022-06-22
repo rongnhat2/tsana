@@ -5,12 +5,12 @@ header{
 	width: 100%;
 	height: 75px;
 	background-color: #1e1f21;
-	border-bottom: 1px solid #424244;
-	z-index: 3;
+	border-bottom: 1px solid #424244; 
 	display: flex !important;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 40px;
+    z-index: 1001;
 }
 header .page-title{ 
 	color: #fff;
@@ -33,6 +33,7 @@ header .customer-action .customer-create{
 	margin: 0 20px 0 0;
 }
 header .customer-action .customer-auth{
+	position: relative;
 	width: 30px;
 	height: 30px;
 	display: flex; 
@@ -43,7 +44,32 @@ header .customer-action .customer-auth{
 	border-radius: 30px;
 	cursor: pointer;
 }
-
+header .customer-action .customer-auth .auth-action-wrapper{
+	display: none;
+	position: absolute;
+	z-index: 10000;
+	right: 0;
+	top: 130%;
+	width: 200px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #1e1f21;
+}
+header .customer-action .customer-auth .auth-action-wrapper .auth-action-item{ 
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	line-height: 20px;
+	color: #fff; 
+	padding: 5px 8px;
+}
+header .customer-action .customer-auth .auth-action-wrapper .auth-action-item:hover{
+	background-color: #fff1;
+}
+header .customer-action .customer-auth.is-open .auth-action-wrapper{
+	display: block;
+}
 
 
 

@@ -50,6 +50,27 @@
 	width: 100%;
 	padding: 10px 20px;
 }
+.I-modal .modal-wrapper .modal-dialog .dialog-footer{
+	border-top: 1px solid #ccc;
+	width: 100%;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+.I-modal .modal-wrapper .modal-dialog .dialog-footer button{
+	border-radius: 4px;
+	padding: 4px 16px;
+}
+.I-modal .modal-wrapper .modal-dialog .dialog-footer button.btn-save{
+	border: 1px solid #fff;
+	color: #fff;
+	background-color: transparent;
+}
+.I-modal .modal-wrapper .modal-dialog .dialog-footer button.btn-save:hover{
+	border: 1px solid #fff;
+	color: #000;
+	background-color: #fff;
+}
 .I-modal.active{
     z-index: 100000;
     background-color: #00000087;
@@ -65,7 +86,413 @@
 }
 
 
+/*MODAL TASK*/
+.I-modal.modal-task{
 
+}
+.I-modal.modal-task .modal-dialog{
+	max-width: 800px;
+}
+.I-modal.modal-task .modal-title{
+	overflow: hidden;
+	line-height: 28px !important;
+} 
+.I-modal.modal-task .mark-done-wrapper{ 
+	float: left;
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
+}
+.I-modal.modal-task .mark-done-wrapper span{
+	margin: 0 0 0 5px;
+}
+.I-modal.modal-task .mark-done-wrapper:hover{ 
+	background-color: #21433d;
+	color: rgb(175, 214, 198);
+	border: 1px solid rgb(93, 162, 131);
+}
+.I-modal.modal-task .task-name{
+	position: relative;
+	margin: 0 0 5px 0;
+}
+.I-modal.modal-task .task-name .update-name{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	cursor: pointer;
+}
+.I-modal.modal-task .task-name input{
+	font-size: 24px;
+	padding: 10px;
+	height: 40px;
+	background-color: transparent;
+	width: 100%;
+	border: none;
+	outline: none;
+	border-radius: 4px;
+	color: #fff;
+}
+.I-modal.modal-task .task-name input:focus{
+	border: 1px solid #ccc;
+}
+.I-modal.modal-task .task-description-list{  
+	height: 500px;
+}
+.I-modal.modal-task .task-description-list .task-row{ 
+	height: 40px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item{
+	float: left;
+	width: 50%;
+	height: 35px;
+	position: relative;
+	margin: 0 0 5px 0;
+	display: flex;
+	align-items: center;
+} 
+.I-modal.modal-task .task-description-list .task-row .task-item .item-title{
+	font-size: 14px;
+	color: #ccc;
+	width: 120px;
+	padding: 0 10px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content{
+	width: calc(100% - 120px);
+	height: 100%; 
+	display: flex;
+	align-items: center;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content input{
+	padding: 3px 8px;
+	outline: none;
+	color: #fff;
+	background-color: transparent;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-wrapper{
+	padding: 0 8px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-wrapper:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-wrapper .user-avatar{
+	width: 30px;
+	height: 30px;
+	background-color: #ccc;
+	border-radius: 30px;
+	margin: 0 5px 0 0;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-wrapper .user-name{
+	font-size: 12px;
+	color: #fff;
+	width: 80px;
+	
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-wrapper .user-action{
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	font-size: 12px;
+	margin: 0 5px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-section-wrapper{
+	padding: 0 8px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-section-wrapper select{
+	width: 100px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	color: #fff;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-section-wrapper select:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign{
+	position: relative;
+	padding: 0 8px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+	cursor: pointer;
+	display: none;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content.no-assign .user-assign{
+	display: flex;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content.no-assign .user-wrapper{
+	display: none;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content.no-assign .user-section-wrapper{
+	display: none;
+}
+
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-avatar{
+	width: 30px;
+	height: 30px;
+	border: 1px dashed #ccc;
+	color: #ccc;
+	border-radius: 30px;
+	margin: 0 5px 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-name{
+	font-size: 12px;
+	color: #fff;
+	width: 80px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-list-team{
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 350px;
+	padding: 10px 10px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	max-height: 200px;
+	z-index: 1000;
+	background-color: #1e1f21;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign.is-open-mail .user-list-team{
+	display: block;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-list-team .user-team-item{
+	width: 100%;
+	height: 35px;
+	padding: 4px;
+	display: flex;
+	align-items: center; 
+	cursor: pointer;
+	margin: 0 0 5px 0;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-list-team .user-team-item:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-list-team .user-team-item .user-avatar{
+	width: 30px;
+	height: 30px;
+	background-color: #ccc;
+	border-radius: 30px;
+	margin: 0 5px 0 0;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-list-team .user-team-item .user-name{
+	color: #fff;
+	font-size: 14px;
+	margin: 0 5px; 
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .user-assign .user-list-team .user-team-item .user-email{
+	color: #ccc;
+	font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign{
+	position: relative;
+	padding: 5px 10px;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign .project-list-wrapper{
+	position: absolute; 
+	top: 100%;
+	left: 0;
+	width: 250px; 
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	max-height: 200px;
+	z-index: 1000;
+	background-color: #1e1f21;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign .project-list-wrapper .project-item{
+	padding: 8px 12px;
+	color: #fff;
+	width: 100%;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign .project-list-wrapper .project-item:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper{
+	display: flex;
+	align-items: center;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper .project-name{
+	color: #fff;
+	font-size: 12px;
+	width: 80px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper .project-section{
+	margin: 0 15px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper .project-section select{
+	width: 100px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	color: #fff;
+	border: 1px solid #ccc;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper .project-section select:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper .project-action{
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ccc; 
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .priority-wrapper{
+
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .priority-wrapper select{
+	width: 100px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	color: #fff;
+	border: 1px solid #ccc;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .priority-wrapper select:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list{
+	
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item{ 
+	width: 100%;
+	height: 30px;  
+	padding: 4px 0; 
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+} 
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item:hover{
+	background-color: #fff1;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item .sub-task-done{
+	width: 40px;
+	height: 30px;  
+	padding: 4px 0; 
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	font-size: 16px;
+	color: #ccc;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item .sub-task-done.task-done{
+	color: #84e159;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item .sub-task-done:hover{
+	color: #84e159;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item .sub-task-name{
+	width: calc(100% - 40px);
+	font-size: 14px;
+	line-height: 30px;
+	color: #fff;
+	padding: 0 10px;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-list .sub-task-item .sub-task-remove{
+	width: 30px;
+	height: 30px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .sub-task-create{
+	padding: 5px 10px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	color: #fff;
+	font-size: 12px;
+	margin: 10px 0;
+	width: 150px;
+	cursor: pointer;
+}
+
+
+
+.I-modal.modal-task .task-description-list .task-row.fulltask{
+	height: auto;
+	overflow: hidden;
+	margin: 5px 0 0 0;
+}
+.I-modal.modal-task .task-description-list .task-row.fulltask .task-item{ 
+	width: 100%;
+	height: auto; 
+	margin: 0 0 5px 0;
+	display: block; 
+} 
+.I-modal.modal-task .task-description-list .task-row.fulltask .task-item .item-title{
+	margin: 0 0 10px 0;
+}
+.I-modal.modal-task .task-description-list .task-row.fulltask .task-item .item-content{
+	width: 100%;
+	display: block;
+}
+.I-modal.modal-task .task-description-list .task-row.fulltask .task-item .item-content textarea{
+	width: 100%;
+	height: 100px;
+	padding: 5px 10px;
+	color: #fff;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	background-color: transparent;
+	outline: none;
+	resize: none;
+}
 
 
 
