@@ -25,7 +25,7 @@
 				<div class="main-heading">
 					
 				</div>
-				<div class="main-body">
+				<div class="main-body on-show">
 					<div class="tab-block w-50">
 						<div class="tab-wrapper">
 							<div class="tab-header">
@@ -33,13 +33,13 @@
 									My Priorities
 								</div>
 								<div class="tab-control-wrapper">
-									<div class="tab-control-item is-active">
+									<div class="tab-control-item is-active" tab-id="0">
 										Upcoming
 									</div>
-									<div class="tab-control-item">
+									{{-- <div class="tab-control-item" tab-id="1">
 										Overdue
-									</div>
-									<div class="tab-control-item">
+									</div> --}}
+									<div class="tab-control-item" tab-id="1">
 										Completed
 									</div>
 								</div>
@@ -72,15 +72,6 @@
 											<div class="project-task">Create Project</div>
 										</div>
 									</div>
-									<div class="project-item">
-										<div class="project-icon">
-											
-										</div>
-										<div class="project-description">
-											<div class="project-name">projetc name</div>
-											<div class="project-task">2 task</div>
-										</div>
-									</div> 
 								</div>
 							</div>
 						</div>
@@ -104,6 +95,9 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="main-body">
+					
 				</div>
 			</div>
 		</main>  
@@ -208,27 +202,27 @@
 						<div class="task-row">
 							<div class="task-item">
 								<div class="item-title">Project</div>
+								<input type="hidden" class="data-project">
 								<div class="item-content"> 
-									<!-- <div class="project-assign">
+									<div class="project-assign">
 										Assign Project
-										<div class="project-list-wrapper">
-											<div class="project-item">test</div>
-											<div class="project-item">test</div>
+										<div class="project-list-wrapper is-scrolling">
+
 										</div>
-									</div> -->
-									{{-- <div class="project-select-wrapper">
+									</div>
+									<div class="project-select-wrapper">
 										<div class="project-name">
-											test
+
 										</div>
-										<div class="project-section"> 
+										{{-- <div class="project-section"> 
 											<select name="">
 												<option value="">123</option> 
 											</select>
-										</div>
+										</div> --}}
 										<div class="project-action">
 											<i class="fas fa-times"></i>
 										</div>
-									</div> --}}
+									</div>
 								</div>
 							</div>
 							<div class="task-item">
@@ -280,7 +274,7 @@
             </div>
         </div>
     </div>
-    <div class="I-full-modal modal-project" modal-full-block="Project">
+    <div class="I-full-modal modal-project" modal-full-block="Project" id="modal-project">
     	<div class="modal-wrapper">
             <div class="modal-dialog">
             	<div class="dialog-header">
@@ -298,27 +292,27 @@
 						</div>	
 						<div class="form-wrapper">
 						 	<div class="sprint-list">
-						 		<div class="sprint-item">
+						 		<div class="sprint-item is-selected" sprint-type="1">
 						 			One Sprint
 						 		</div>
-						 		<div class="sprint-item">
+						 		<div class="sprint-item" sprint-type="2">
 						 			Multi Sprint
 						 		</div>
 						 	</div>
 						 </div>
 						<div class="form-wrapper">
 							<label for="">Project name</label>
-							<input type="text" placeholder="Project name">
+							<input type="text" class="data-name" placeholder="Project name">
 						</div>
 						<div class="form-wrapper">
 							<label for="">Project privacy</label>
-							<select name="" id="">
+							<select name="" id="" class="data-privacy">
 								<option value="0">Public</option>
 								<option value="1">Private</option>
 							</select>
 						</div>
 						<div class="form-wrapper button-action">
-							<a href="#" class="button submit">Create</a> 
+							<a href="#" class="button submit project-create" atr="Create">Create</a> 
 						</div>
 					</div>
                 </div>

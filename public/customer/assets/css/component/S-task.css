@@ -52,6 +52,9 @@
 .I-main .main-wrapper .tab-block .tab-wrapper .tab-body .task-list-item .task-item .task-done:hover{
 	color: #84e159;
 }
+.I-main .main-wrapper .tab-block .tab-wrapper .tab-body .task-list-item .task-item .task-done.is-done{
+	color: #84e159;
+}
 .I-main .main-wrapper .tab-block .tab-wrapper .tab-body .task-list-item .task-item .task-name{
 	width: calc(100% - 40px);
 	font-size: 14px;

@@ -84,6 +84,10 @@
 	justify-content: center;
 	text-align: center;
 }
+.I-full-modal.modal-project .modal-project-wrapper .sprint-list .sprint-item.is-selected{
+	background-color: #39ff45;
+	color: #000;
+}
 
 
 

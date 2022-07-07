@@ -8,8 +8,12 @@
 	overflow: hidden;
 }
 .I-main .main-wrapper .main-body{
-
+	display: none;
 }
+.I-main .main-wrapper .main-body.on-show{
+	display: block;
+}
+
 .I-main .main-wrapper .tab-block{
 	float: left;
 	padding: 5px;

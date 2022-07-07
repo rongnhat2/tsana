@@ -41,6 +41,7 @@ Route::prefix('customer')->group(function () {
         Route::prefix('task')->group(function () {  
             Route::get('get', 'Customer\TaskController@get')->name('customer.task.get');
             Route::get('get-one', 'Customer\TaskController@get_one')->name('customer.task.get_one');
+            Route::get('on-done', 'Customer\TaskController@on_done')->name('customer.task.on_done');
             Route::post('create', 'Customer\TaskController@create')->name('customer.task.create');
             Route::post('update', 'Customer\TaskController@update')->name('customer.task.update');
         }); 
@@ -50,6 +51,12 @@ Route::prefix('customer')->group(function () {
             Route::get('delete', 'Customer\SubTaskController@delete')->name('customer.collab.delete');
             Route::get('get-one', 'Customer\SubTaskController@get_one')->name('customer.subtask.get_one');
             Route::post('create', 'Customer\SubTaskController@create')->name('customer.subtask.create');
+        }); 
+        Route::prefix('project')->group(function () {  
+            Route::post('create', 'Customer\ProjectController@create')->name('customer.project.create');
+            Route::get('get', 'Customer\ProjectController@get')->name('customer.project.get');
+            // Route::get('get-one', 'Customer\TaskController@get_one')->name('customer.task.get_one');
+            // Route::post('update', 'Customer\TaskController@update')->name('customer.task.update');
         }); 
     });
 });

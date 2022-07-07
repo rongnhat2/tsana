@@ -53,7 +53,7 @@ class TaskController extends Controller
         $is_user = static::check_token($request);  
         if ($is_user) { 
             list($user_id, $token) = static::unpack_token($request); 
-            $data = $this->task->get_task_comming($user_id);
+            $data = $this->task->get_task_comming($user_id, $request->tab_id);
             return $this->task->send_response("Task List", $data, 200); 
         }else{
             Cookie::queue(Cookie::forget('_token_'));
@@ -108,6 +108,7 @@ class TaskController extends Controller
             list($user_id, $token) = static::unpack_token($request); 
             $data = [ 
                 "customer_assign"       => $request->data_assign,
+                "project_id"            => $request->data_project,
                 "name"                  => $request->data_name,
                 "start_date"            => $request->data_start,
                 "end_date"              => $request->data_end, 
@@ -121,6 +122,20 @@ class TaskController extends Controller
             return $this->task->send_response("Error Token", null, 404); 
         }
     }
+
+    // Hoàn thiện task
+    public function on_done(Request $request){ 
+        $is_user = static::check_token($request);  
+        if ($is_user) { 
+            list($user_id, $token) = static::unpack_token($request);  
+            $data =$this->task->update(["status" => 1], $request->task_id); 
+            return $this->task->send_response("Done Task", $data, 200); 
+        }else{
+            Cookie::queue(Cookie::forget('_token_'));
+            return $this->task->send_response("Error Token", null, 404); 
+        }
+    }
+
 
 
     // Kiểm tra token hợp lệ

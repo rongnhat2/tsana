@@ -331,11 +331,16 @@
 	font-size: 12px;
 	border-radius: 4px;
 	cursor: pointer;
+	display: none;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign.on-show{
+	display: block;
 }
 .I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign:hover{
 	background-color: #fff1;
 }
 .I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign .project-list-wrapper{
+	display: none;
 	position: absolute; 
 	top: 100%;
 	left: 0;
@@ -345,6 +350,9 @@
 	max-height: 200px;
 	z-index: 1000;
 	background-color: #1e1f21;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign.do-select .project-list-wrapper{
+	display: block;
 }
 .I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-assign .project-list-wrapper .project-item{
 	padding: 8px 12px;
@@ -357,6 +365,10 @@
 .I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper{
 	display: flex;
 	align-items: center;
+	display: none;
+}
+.I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper.on-show{
+	display: flex;
 }
 .I-modal.modal-task .task-description-list .task-row .task-item .item-content .project-select-wrapper .project-name{
 	color: #fff;

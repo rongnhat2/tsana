@@ -37,24 +37,8 @@
 				</div>
 			</div>
 			<div class="project-main-wrapper">
-				<div class="project-list">
-					<div class="project-item project-public">
-						<div class="project-icon"></div>
-						<div class="project-name">
-							Test
-						</div> 
-						<div class="project-action"> 
-						</div>
-					</div> 
-					<div class="project-item project-private">
-						<div class="project-icon"></div>
-						<div class="project-name">
-							Test Private
-						</div>
-						<div class="project-action">
-							<i class="fas fa-lock"></i>
-						</div>
-					</div> 
+				<div class="project-list"> 
+					
 				</div>
 			</div>
 		</div>		

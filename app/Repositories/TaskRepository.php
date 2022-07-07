@@ -16,10 +16,10 @@ class TaskRepository extends BaseRepository implements RepositoryInterface
         $this->model = $model;
     }
 
-    public function get_task_comming($id){
+    public function get_task_comming($id, $tab_id){
         return DB::table('task')  
                 ->where("customer_assign", "=", $id)
-                ->where("status", "=", 0)
+                ->where("status", "=", $tab_id) 
                 ->get();
     }
     public function get_one_task($id, $task_id){

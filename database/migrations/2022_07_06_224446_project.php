@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Task extends Migration
+class Project extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,13 @@ class Task extends Migration
      */
     public function up()
     {
-        Schema::create('task', function (Blueprint $table) {
+        Schema::create('project', function (Blueprint $table) {
             $table->increments('id'); 
-            $table->integer('customer_created');
-            $table->integer('customer_assign');
-            $table->integer('customer_task_id')->nullable(); 
-            $table->integer('project_id')->nullable(); 
-            $table->string('name')->nullable(); 
-            $table->string('start_date')->nullable(); 
-            $table->string('end_date')->nullable(); 
-            $table->string('type')->nullable(); 
-            $table->string('priority')->nullable(); 
+            $table->integer('customer_id'); 
+            $table->longtext('name'); 
             $table->longtext('description')->nullable(); 
+            $table->integer('privacy'); 
+            $table->integer('type'); 
             $table->integer('status')->default(0);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
@@ -38,6 +33,6 @@ class Task extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task');
+        Schema::dropIfExists('project');
     }
 }

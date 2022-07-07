@@ -3,6 +3,7 @@ const Api = {
     Collab: {}, 
     Task: {}, 
     SubTask: {}, 
+    Project: {}, 
 };
 (() => {
     $.ajaxSetup({
@@ -67,9 +68,13 @@ const Api = {
 //Task
 (() => {
     // lấy ra tất cả các task
-    Api.Task.GetAll = () => $.ajax({
+    Api.Task.GetAll = (tab_id) => $.ajax({
         url: `/customer/api/task/get`,
         method: 'GET',
+        dataType: 'json',
+        data: {
+            tab_id: tab_id ?? 0, 
+        }
     });
     // lấy ra 1 task
     Api.Task.GetOne = (id) => $.ajax({
@@ -78,6 +83,15 @@ const Api = {
         dataType: 'json',
         data: {
             id: id ?? '', 
+        }
+    });
+    // lấy ra 1 task
+    Api.Task.onDone = (task_id) => $.ajax({
+        url: `/customer/api/task/on-done`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            task_id: task_id ?? '', 
         }
     });
     // Tạo mới
@@ -137,4 +151,20 @@ const Api = {
             task_id: task_id ?? '', 
         }
     });
+})();
+
+//Project
+(() => {  
+    Api.Project.GetAll = () => $.ajax({
+        url: `/customer/api/project/get`,
+        method: 'GET', 
+    });
+    // Tạo mới
+    Api.Project.Create = (data) => $.ajax({
+        url: `/customer/api/project/create`,
+        method: 'POST',
+        data: data,
+        contentType: false,
+        processData: false,
+    });  
 })();

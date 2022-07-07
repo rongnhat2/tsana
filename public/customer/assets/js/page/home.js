@@ -62,12 +62,19 @@ const View = {
         },
     },
     Task: {
+        onChangeTab(callback){ 
+            $(document).on('click', `.tab-control-wrapper .tab-control-item`, function() { 
+                $(".tab-control-wrapper .tab-control-item").removeClass("is-active");
+                $(this).addClass("is-active")
+                callback($(this).attr("tab-id"));
+            }); 
+        },
         render(data){
             $(".task-list-item").find(".task-item").remove()
             data.map(v => {
                 $(".task-list-item")
                     .append(`<div class="task-item" task-id=${v.id}>
-                                <div class="task-done"><i class="fas fa-check-circle"></i></div>
+                                <div class="task-done ${v.status == 1 ? "is-done" : "task-comming"}"><i class="fas fa-check-circle"></i></div>
                                 <div class="task-name" modal-control="Task">${v.name}</div>
                             </div> `)
             })
@@ -83,6 +90,7 @@ const View = {
             resource.attr("task-id", data.task.id)
             resource.find(".data-name").val(data.task.name)
             resource.find(".data-assign").val(data.task.customer_assign) 
+            resource.find(".data-project").val(data.task.project_id) 
             resource.find(".data-start").val(data.task.start_date)
             resource.find(".data-end").val(data.task.end_date)
             resource.find(".data-priority").val(data.task.priority)
@@ -93,6 +101,20 @@ const View = {
                     resource.find(".user-wrapper .user-name").text(v.name);
                 }
             })
+            $(".project-list-wrapper .project-item").remove();
+            View.Task.AssignProject.project.map(v => {
+                $(".project-list-wrapper").append(`<div class="project-item" project-id="${v.id}" project-name="${v.name}">${v.name}</div>`) 
+            })
+            if (!data.task.project_id) {
+                $(".project-assign").addClass("on-show");
+                $(".project-select-wrapper").removeClass("on-show");
+            }else{
+                $(".project-select-wrapper").addClass("on-show");
+                $(".project-assign").removeClass("on-show");
+                View.Task.AssignProject.project.map(v => {
+                    if(v.id == data.task.project_id) $(".project-select-wrapper .project-name").text(v.name);
+                })
+            }
         },
         getVal(){
             var resource = "#modal-task";
@@ -103,6 +125,7 @@ const View = {
             var data_id             = $(`${resource}`).attr("task-id");
             var data_name           = $(`${resource}`).find('.data-name').val(); 
             var data_assign         = $(`${resource}`).find('.data-assign').val(); 
+            var data_project        = $(`${resource}`).find('.data-project').val(); 
             var data_start          = $(`${resource}`).find('.data-start').val(); 
             var data_end            = $(`${resource}`).find('.data-end').val(); 
             var data_priority       = $(`${resource}`).find('.data-priority').val(); 
@@ -111,7 +134,8 @@ const View = {
             if (onPushData) {
                 fd.append('data_id', data_id);  
                 fd.append('data_name', data_name);  
-                fd.append('data_assign', data_assign);  
+                fd.append('data_assign', data_assign);
+                fd.append('data_project', data_project);  
                 fd.append('data_start', data_start);  
                 fd.append('data_end', data_end);  
                 fd.append('data_priority', data_priority);  
@@ -129,6 +153,16 @@ const View = {
                 var data = View.Task.getVal();
                 callback(data);
             }); 
+        },
+        onDone(callback){
+            $(document).on('click', `.task-item .task-comming`, function() { 
+                var task_id = $(this).parent().attr("task-id");
+                callback(task_id);
+            }); 
+            $(document).on('click', `.mark-done-wrapper`, function() { 
+                var task_id = $("#modal-task").attr("task-id");
+                callback(task_id);
+            });  
         },
         SubTask: {
             Create(callback){
@@ -164,6 +198,44 @@ const View = {
                                     <div class="sub-task-remove"><i class="fas fa-times"></i></div>
                                 </div> `)
                 })
+            }
+        },
+        AssignProject: {
+            project: [],
+            onAssign(callback){
+                $(document).on('click', `.project-assign`, function() {
+                    $(this).addClass("do-select");
+                    callback();
+                });
+            },
+            doAssign(callback){
+                $(document).on('click', `.project-item`, function() {
+                    var project_id = $(this).attr("project-id") 
+                    var project_name = $(this).attr("project-name") 
+                    var father = $(this).parent().parent().parent();
+                    father.find(".project-assign").removeClass("on-show");
+                    father.find(".project-assign").removeClass("do-select");
+                    father.find(".project-select-wrapper").addClass("on-show");
+                    father.find(".project-select-wrapper .project-name").text(project_name)
+                    callback(project_id);
+                });
+            },
+            removeAssign(callback){
+                $(document).on('click', `.project-action`, function() {
+                    var father = $(this).parent().parent();
+                    father.find(".project-assign").addClass("on-show");
+                    father.find(".project-assign").addClass("do-select");
+                    father.find(".project-select-wrapper").removeClass("on-show");
+                    callback();
+                });
+            },
+            init(){ 
+                $(document).mouseup(function(e) {
+                    var container = $(".project-assign");
+                    if (!container.is(e.target) && container.has(e.target).length === 0) {
+                        $(".project-assign").removeClass("do-select");
+                    }
+                });
             }
         },
         Assign: {
@@ -228,11 +300,84 @@ const View = {
             }
         },
     },
+    Project: {
+        render(data){
+            $(".project-main-wrapper .project-list .project-item").remove();
+            $(".project-list-group .project-item-block").remove();
+            data.map(v => {
+                var project_value = `<div class="project-item ${v.privacy == 0 ? "project-public" : "project-private"}">
+                                        <div class="project-icon"></div>
+                                        <div class="project-name">
+                                            ${v.name}
+                                        </div> 
+                                        <div class="project-action"> 
+                                            ${v.privacy == 0 ? "" : `<i class="fas fa-lock"></i>`}
+                                        </div>
+                                    </div> `
+                $(".project-main-wrapper .project-list")
+                    .append(project_value);
+
+                $(".project-list-group")
+                    .append(` <div class="project-item project-item-block">
+                                    <div class="project-icon">
+                                        
+                                    </div>
+                                    <div class="project-description">
+                                        <div class="project-name">${v.name}</div>
+                                        <div class="project-task">${v.total_task} task</div>
+                                    </div>
+                                </div> `)
+            })
+        },
+        onChangeSprint(){
+            var resource = "#modal-project"; 
+            $(document).on('click', `${resource} .sprint-item`, function() { 
+                $(".sprint-item").removeClass("is-selected");
+                $(this).addClass("is-selected");
+            }); 
+        },
+        getVal(){
+            var resource = "#modal-project";
+            var fd = new FormData();
+            var required_data = [];
+            var onPushData = true;
+ 
+            var data_name          = $(`${resource}`).find('.data-name').val(); 
+            var data_privacy       = $(`${resource}`).find('.data-privacy').val();  
+            var data_type          = $(`${resource}`).find(`.sprint-item.is-selected`).attr("sprint-type");  
+
+            if (data_name == '') {  required_data.push('Name is required.'); onPushData = false  }
+
+            if (onPushData) {
+                fd.append('data_privacy', data_privacy);  
+                fd.append('data_name', data_name);  
+                fd.append('data_type', data_type);   
+                return fd;
+            }else{ 
+                var required_noti = ``;
+                for (var i = 0; i < required_data.length; i++) { required_noti += `<div class="notification-item error">${required_data[i]}</div>`; }
+                $(`${resource}`).find('.notification-wrapper').prepend(` <div class="notification-group">${required_noti}</div> `)
+                return false;
+            }
+        },
+        onCreate(callback){
+            var resource = "#modal-project";
+            $(document).on('click', `${resource} .project-create`, function() { 
+                var data = View.Project.getVal();
+                callback(data);
+            }); 
+        },
+        init(){
+            this.onChangeSprint()
+        }
+    },
     validateEmail(email){
         return email.match( /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ );
     },
     init(){
         View.Task.Assign.init();
+        View.Task.AssignProject.init();
+        View.Project.init();
     }
 };
 // Controller
@@ -255,9 +400,29 @@ const View = {
     }
     function init(){
         getCollab(); 
-        getTask();
+        getTask(0);
         GetAssign();
+        getProject();
     }
+    
+    // const xhrSaleChannel = Api.SaleChannel.ReadAll();
+    // const xhrStore = Api.Store.ReadAll();
+
+    // $.when(xhrSaleChannel, xhrStore).done((...responses) => {
+    //     resSaleChannel = xhrSaleChannel.responseJSON;
+    //     resStore = xhrStore.responseJSON;
+    //     View.filters.multistore.__storeArray = resStore.data;
+    //     View.filters.multistore.init();
+
+    //     View.filters.fetch({
+    //         saleChannels: resSaleChannel.data,
+    //         stores: resStore.data
+            
+    //     });
+    //     setURLDefaul();
+    //     getURLData();
+    // });
+
     View.Invite.onPush("Push", (fd) => { 
         IndexView.Notification.remove(`#invite-form`); 
         $(".send-invite").text(`Inviting`)
@@ -339,10 +504,46 @@ const View = {
                 if (res.status == 200) {
                     $('.I-modal').removeClass('active');
                     getTask();
+                    getProject();
                 } 
         })
         .fail(err => { })
         .always(() => { });
+    })
+    View.Task.onDone((id) => {
+        Api.Task.onDone(id)
+            .done(res => {
+                getTask(0);
+                $('.I-modal').removeClass('active');
+        })
+        .fail(err => { })
+        .always(() => { });
+    })
+    View.Task.onChangeTab((id) => {
+        getTask(id);
+    })
+
+    View.Task.AssignProject.onAssign(() => {
+        // GetAssign()
+    })
+    View.Task.AssignProject.doAssign((id) => { 
+        $(".data-project").val(id) 
+    })
+    View.Task.AssignProject.removeAssign(() => { 
+        $(".data-project").val(0)
+    })
+
+
+    View.Project.onCreate((fd) => { 
+        Api.Project.Create(fd)
+            .done(res => {
+                if (res.status == 200) {
+                    getProject()
+                    $('.I-full-modal').removeClass('active');
+                } 
+            })
+            .fail(err => { })
+            .always(() => { }); 
     })
 
     function getCollab(){
@@ -353,10 +554,19 @@ const View = {
             .fail(err => {  })
             .always(() => { });
     }
-    function getTask(){
-        Api.Task.GetAll()
+    function getTask(id){
+        Api.Task.GetAll(id)
             .done(res => {
                 View.Task.render(res.data);  
+            })
+            .fail(err => {  })
+            .always(() => { });
+    }
+    function getProject(){
+        Api.Project.GetAll()
+            .done(res => {
+                View.Project.render(res.data);
+                View.Task.AssignProject.project = res.data;
             })
             .fail(err => {  })
             .always(() => { });
